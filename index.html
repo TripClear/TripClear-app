@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TripClear</title>
+
+<style>
+body {
+font-family: Arial, sans-serif;
+background:#f7f7f7;
+margin:0;
+padding:40px 20px;
+}
+
+.container {
+max-width:600px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 4px 18px rgba(0,0,0,0.08);
+}
+
+h1 {
+text-align:center;
+margin-bottom:25px;
+}
+
+label {
+font-weight:bold;
+display:block;
+margin-top:18px;
+margin-bottom:6px;
+}
+
+input, textarea, select {
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+box-sizing:border-box;
+}
+
+button {
+width:100%;
+margin-top:25px;
+padding:16px;
+background:black;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover {
+opacity:.9;
+}
+
+#status {
+text-align:center;
+margin-top:20px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>TripClear Checklist Generator</h1>
+
+<form id="tripForm">
+
+<label>Departure country</label>
+<input name="departure" required>
+
+<label>Destination countries (include layovers in order)</label>
+<textarea name="route" required></textarea>
+
+<label>Airlines (one per line)</label>
+<textarea name="airlines" required></textarea>
+
+<label>Cabin class</label>
+<select name="cabin">
+<option>Economy</option>
+<option>Premium Economy</option>
+<option>Business</option>
+<option>First</option>
+</select>
+
+<label>Does your trip include layovers?</label>
+<select name="layovers">
+<option selected>Yes</option>
+<option>No</option>
+</select>
+
+<label>Traveling with Rx medication?</label>
+<select name="rx">
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<label>Email for checklist delivery</label>
+<input name="email" type="email" required>
+
+<button type="submit">Generate My TripClear Checklist</button>
+
+</form>
+
+<div id="status"></div>
+</div>
+
+<script>
+document.getElementById("tripForm").addEventListener("submit", async function(e){
+e.preventDefault();
+
+document.getElementById("status").innerText = "Generating your TripClear checklist...";
+
+const formData = new FormData(this);
+const data = Object.fromEntries(formData.entries());
+
+const response = await fetch("PASTE_YOUR_APPS_SCRIPT_URL_HERE", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(data)
+});
+
+document.getElementById("status").innerText =
+"Your checklist is being generated and will arrive by email shortly ✈️";
+});
+</script>
+
+</body>
+</html>
