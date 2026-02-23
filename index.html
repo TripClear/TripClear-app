@@ -135,14 +135,29 @@ document.getElementById("status").innerText = "Generating your TripClear checkli
 const formData = new FormData(this);
 const data = Object.fromEntries(formData.entries());
 
+try {
+
 const response = await fetch("https://script.google.com/macros/s/AKfycbz5d74yCIZOoasVGnz2-GRhjnEf0_9FpwfENncf8Dvagq-u1NPj0VE3vraEySjGN-xV/exec", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify(data)
 });
 
+const result = await response.json();
+
+if(result.success){
 document.getElementById("status").innerText =
 "Your checklist is being generated and will arrive by email shortly ✈️";
+} else {
+document.getElementById("status").innerText =
+"Something went wrong. Please try again.";
+}
+
+} catch(err){
+document.getElementById("status").innerText =
+"Connection issue. Please try again.";
+}
+
 });
 </script>
 
