@@ -135,7 +135,7 @@ document.getElementById("status").innerText = "Generating your TripClear checkli
 const formData = new FormData(this);
 const data = Object.fromEntries(formData.entries());
 
-const response = await fetch("PASTE_YOUR_APPS_SCRIPT_URL_HERE", {
+const response = await fetch("https://script.google.com/macros/s/AKfycbz4ltde9vwGgYWl5l9YELDfVX46tGOVFNqfd7JSBHvAymcEmLVaAwsoqCaHCQaaJ_L8/exec", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify(data)
