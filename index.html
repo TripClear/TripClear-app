@@ -80,8 +80,28 @@ font-weight:bold;
 <label>Which country are you departing from, and which country or countries are you visiting or transiting through (including layovers)?</label>
 <textarea name="route" required></textarea>
 
-<label>Airlines (one per line)</label>
-<textarea name="airlines" required></textarea>
+<label>Select airline(s)</label>
+
+<select name="airlines" multiple required size="6">
+
+<option>Lufthansa</option>
+<option>Emirates</option>
+<option>British Airways</option>
+<option>Qatar Airways</option>
+<option>Swiss International Airlines</option>
+<option>KLM</option>
+<option>Air France</option>
+<option>United Airlines</option>
+<option>American Airlines</option>
+<option>Delta Air Lines</option>
+<option>Korean Air</option>
+<option>Etihad</option>
+
+</select>
+
+<p style="font-size:13px;color:#666;margin-top:4px;">
+Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
+</p>
 
 <label>Cabin class</label>
 <select name="cabin">
