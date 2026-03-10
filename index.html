@@ -153,7 +153,14 @@ e.preventDefault();
 document.getElementById("status").innerText = "Generating your TripClear checklist...";
 
 const formData = new FormData(this);
-const data = Object.fromEntries(formData.entries());
+const data = {};
+formData.forEach((value, key) => {
+  if (data[key]) {
+    data[key] += "\n" + value;
+  } else {
+    data[key] = value;
+  }
+});
 
 try {
 
