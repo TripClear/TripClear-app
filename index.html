@@ -19,7 +19,7 @@ padding:30px 20px;
 max-width:620px;
 margin:auto;
 background:white;
-padding:45px;
+padding:0 40px 40px;
 border-radius:14px;
 box-shadow:0 18px 40px rgba(0,0,0,0.18);
 }
@@ -117,6 +117,25 @@ padding:8px;
 select[multiple] option{
 padding:6px;
 }
+
+.card-header{
+text-align:center;
+padding:30px 20px 20px;
+background:#3f7899;
+border-radius:14px 14px 0 0;
+}
+
+.card-header img{
+max-width:200px;
+margin-bottom:10px;
+}
+
+.card-header h1{
+color:white;
+font-size:30px;
+margin:0;
+font-weight:600;
+}
   
 </style>
 </head>
@@ -125,11 +144,10 @@ padding:6px;
 
 <div class="container">
 
-<div class="logo-header">
-<img src="tripclear logo draft.png" alt="TripClear logo">
-</div>
-
+<div class="card-header">
+<img src="tripclear-logo.png" alt="TripClear logo">
 <h1>TripClear Checklist Generator</h1>
+</div>
 
 <form id="tripForm">
 
