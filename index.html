@@ -8,39 +8,53 @@
 <style>
 body {
 font-family: Arial, sans-serif;
-background:#f7f7f7;
+background: linear-gradient(180deg,#f8fafc,#eef2f7);
 margin:0;
-padding:40px 20px;
+padding:60px 20px;
 }
 
 .container {
-max-width:600px;
+max-width:620px;
 margin:auto;
 background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 4px 18px rgba(0,0,0,0.08);
+padding:40px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 h1 {
 text-align:center;
-margin-bottom:25px;
+margin-bottom:30px;
+font-size:28px;
+letter-spacing:.3px;
 }
 
 label {
-font-weight:bold;
+font-weight:600;
 display:block;
-margin-top:18px;
+margin-top:22px;
 margin-bottom:6px;
+font-size:14px;
+color:#333;
+letter-spacing:.2px;
 }
 
 input, textarea, select {
 width:100%;
 padding:12px;
-border:1px solid #ddd;
+border:1px solid #e3e3e3;
 border-radius:8px;
 font-size:16px;
 box-sizing:border-box;
+background:#fafafa;
+transition:border .2s, box-shadow .2s;
+}
+
+input:focus, textarea:focus, select:focus {
+outline:none;
+border:1px solid #000;
+box-shadow:0 0 0 2px rgba(0,0,0,.05);
+background:white;
 }
 
 button {
@@ -77,8 +91,12 @@ font-weight:bold;
 <label>Departure country</label>
 <input name="departure" required>
 
-<label>Which country are you departing from, and which country or countries are you visiting or transiting through (including layovers)?</label>
+<label>Destination and layover countries</label>
 <textarea name="route" required></textarea>
+
+<p style="font-size:13px;color:#666;margin-top:4px;">
+List all countries you will visit or transit through. Include layovers. Example: Thailand, Qatar
+</p>
 
 <label>Select airline(s)</label>
 
