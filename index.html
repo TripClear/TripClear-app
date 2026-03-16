@@ -118,6 +118,13 @@ padding:8px;
 select[multiple] option{
 padding:6px;
 }
+
+.form-panel{
+background:#f9fafb;
+padding:25px 25px 30px;
+border-radius:12px;
+border:1px solid #e5e7eb;
+}
   
 </style>
 </head>
@@ -132,6 +139,7 @@ padding:6px;
 
 <h1>TripClear Checklist Generator</h1>
 
+<div class="form-panel">
 <form id="tripForm">
 
 <label>Departure country</label>
@@ -206,6 +214,7 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 <button type="submit">Generate My TripClear Checklist</button>
 
 </form>
+</div>
 
 <div id="status"></div>
 </div>
