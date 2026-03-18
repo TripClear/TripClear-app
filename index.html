@@ -258,11 +258,52 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 
 <script>
 function checkComplexity() {
-const airlines = Array.from(document.querySelector('select[name="airlines"]').selectedOptions)
+
+const airlineRules = {
+  "Qatar Airways": { weight: 7, size: "50x35x23" },
+  "Emirates": { weight: 7, size: "55x38x20" },
+  "British Airways": { weight: 23, size: "56x45x25" },
+  "Lufthansa": { weight: 8, size: "55x40x23" },
+  "Swiss International Airlines": { weight: 8, size: "55x40x23" },
+  "KLM": { weight: 12, size: "55x35x25" },
+  "Air France": { weight: 12, size: "55x35x25" },
+  "United Airlines": { weight: null, size: "56x35x22" },
+  "American Airlines": { weight: null, size: "56x36x23" },
+  "Delta Air Lines": { weight: null, size: "56x35x23" },
+  "Korean Air": { weight: 10, size: "55x40x20" },
+  "Etihad": { weight: 7, size: "50x40x25" },
+
+  "Turkish Airlines": { weight: 8, size: "55x40x23" },
+  "Singapore Airlines": { weight: 7, size: "55x40x20" },
+  "ANA (All Nippon Airways)": { weight: 10, size: "55x40x25" },
+  "Japan Airlines (JAL)": { weight: 10, size: "55x40x25" },
+  "Cathay Pacific": { weight: 7, size: "56x36x23" },
+  "Qantas": { weight: 7, size: "56x36x23" },
+  "Air Canada": { weight: null, size: "55x40x23" },
+  "Iberia": { weight: 10, size: "56x40x25" },
+  "Finnair": { weight: 8, size: "55x40x23" },
+  "Alaska Airlines": { weight: null, size: "56x36x23" }
+};
+
+const selected = Array.from(document.querySelector('select[name="airlines"]').selectedOptions)
   .map(o => o.value);
 
-if (airlines.length > 1) {
-  return true;
+if (selected.length < 2) return false;
+
+const base = airlineRules[selected[0]];
+
+for (let i = 1; i < selected.length; i++) {
+  const current = airlineRules[selected[i]];
+
+  if (!current) continue;
+
+  if (base.weight !== null && current.weight !== null && base.weight !== current.weight) {
+    return true;
+  }
+
+  if (base.size !== current.size) {
+    return true;
+  }
 }
 
 return false;
