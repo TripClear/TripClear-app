@@ -124,7 +124,7 @@ background:white;
 border:1px solid #e3e3e3;
 padding:8px;
 }
-
+  
 select[multiple] option{
 padding:6px;
 }
@@ -248,7 +248,11 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 <label>Email for checklist delivery</label>
 <input name="email" type="email" required>
 
-<button type="submit">Generate My TripClear Checklist</button>
+<button type="button" onclick="runCheck()">Check Itinerary</button>
+
+<button type="submit" id="submitBtn" disabled>
+  Generate My TripClear Checklist
+</button>
 
 </form>
 </div>
@@ -258,6 +262,28 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 
 <script>
 function checkComplexity() {
+
+function runCheck() {
+  const isComplex = checkComplexity();
+
+  if (isComplex) {
+    alert(
+      "Complex itinerary detected.\n\nMultiple airlines have conflicting rules.\n\nYou will need a TripClear consolidated checklist."
+    );
+
+    // enable submit (next step = purchase flow later)
+    document.getElementById("submitBtn").disabled = false;
+
+  } else {
+    const proceed = confirm(
+      "No complex itinerary detected.\n\nA standard checklist may be sufficient.\n\nDo you still want to continue?"
+    );
+
+    if (proceed) {
+      document.getElementById("submitBtn").disabled = false;
+    }
+  }
+} 
 
 const airlineRules = {
   "Qatar Airways": { weight: 7, size: "50x35x23" },
@@ -311,16 +337,6 @@ return false;
   
 document.getElementById("tripForm").addEventListener("submit", async function(e){
 e.preventDefault();
-
-if (checkComplexity()) {
-  const proceed = confirm(
-    "Complex itinerary detected.\n\nMultiple airlines may have conflicting rules.\n\nTripClear will generate a consolidated checklist for your trip.\n\nContinue?"
-  );
-
-  if (!proceed) {
-    return; // stop submission
-  }
-}
 
 document.getElementById("status").innerText = "Generating your TripClear checklist...";
 
