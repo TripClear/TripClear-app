@@ -257,6 +257,17 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 </div>
 
 <script>
+function checkComplexity() {
+const airlines = Array.from(document.querySelector('select[name="airlines"]').selectedOptions)
+  .map(o => o.value);
+
+if (airlines.length > 1) {
+  return true;
+}
+
+return false;
+}
+  
 document.getElementById("tripForm").addEventListener("submit", async function(e){
 e.preventDefault();
 
