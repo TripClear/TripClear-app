@@ -263,28 +263,6 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 <script>
 function checkComplexity() {
 
-function runCheck() {
-  const isComplex = checkComplexity();
-
-  if (isComplex) {
-    alert(
-      "Complex itinerary detected.\n\nMultiple airlines have conflicting rules.\n\nYou will need a TripClear consolidated checklist."
-    );
-
-    // enable submit (next step = purchase flow later)
-    document.getElementById("submitBtn").disabled = false;
-
-  } else {
-    const proceed = confirm(
-      "No complex itinerary detected.\n\nA standard checklist may be sufficient.\n\nDo you still want to continue?"
-    );
-
-    if (proceed) {
-      document.getElementById("submitBtn").disabled = false;
-    }
-  }
-} 
-
 const airlineRules = {
   "Qatar Airways": { weight: 7, size: "50x35x23" },
   "Emirates": { weight: 7, size: "55x38x20" },
@@ -334,44 +312,22 @@ for (let i = 1; i < selected.length; i++) {
 
 return false;
 }
-  
-document.getElementById("tripForm").addEventListener("submit", async function(e){
-e.preventDefault();
 
-document.getElementById("status").innerText = "Generating your TripClear checklist...";
 
-const formData = new FormData(this);
-const data = Object.fromEntries(formData.entries());
+function runCheck() {
+  const isComplex = checkComplexity();
 
-// explicitly collect selected airlines
-const airlineSelect = document.querySelector('select[name="airlines"]');
-const selectedAirlines = Array.from(airlineSelect.selectedOptions).map(o => o.value);
-
-data.airlines = selectedAirlines.join("\n");
-
-try {
-
-const response = await fetch("https://script.google.com/macros/s/AKfycbwnIT-8LMqgLR5Wc-fJof98ohPDeKXXCeZe_JfMPG16AVqVb9zaDLNbMYfD_143FYpF/exec", {
-method: "POST",
-body: JSON.stringify(data)
-});
-
-const result = await response.json();
-
-if(result.success){
-document.getElementById("status").innerText =
-"Your checklist is being generated and will arrive by email shortly ✈️";
-} else {
-document.getElementById("status").innerText =
-"Something went wrong. Please try again.";
+  if (isComplex) {
+    alert("Complex itinerary detected.\n\nMultiple airlines have conflicting rules.\n\nYou will need a TripClear checklist.");
+    document.getElementById("submitBtn").disabled = false;
+  } else {
+    const proceed = confirm("No complex itinerary detected.\n\nDo you still want to continue?");
+    if (proceed) {
+      document.getElementById("submitBtn").disabled = false;
+    }
+  }
 }
 
-} catch(err){
-document.getElementById("status").innerText =
-"Connection issue. Please try again.";
-}
-
-});
 </script>
 
 </body>
