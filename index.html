@@ -271,6 +271,16 @@ return false;
 document.getElementById("tripForm").addEventListener("submit", async function(e){
 e.preventDefault();
 
+if (checkComplexity()) {
+  const proceed = confirm(
+    "Complex itinerary detected.\n\nMultiple airlines may have conflicting rules.\n\nTripClear will generate a consolidated checklist for your trip.\n\nContinue?"
+  );
+
+  if (!proceed) {
+    return; // stop submission
+  }
+}
+
 document.getElementById("status").innerText = "Generating your TripClear checklist...";
 
 const formData = new FormData(this);
