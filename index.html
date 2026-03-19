@@ -336,10 +336,35 @@ function runCheck() {
   document.getElementById("requestBtn").style.display = "block";
 }
 
+ window.onload = function() {
+
   document.getElementById("requestBtn").addEventListener("click", function() {
-  document.getElementById("checkoutSection").style.display = "block";
-  this.style.display = "none";
-});
+    document.getElementById("checkoutSection").style.display = "block";
+    this.style.display = "none";
+  });
+
+  document.getElementById("tripForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    document.getElementById("status").innerText = "Checklist being generated...";
+
+    const formData = new FormData(this);
+
+    fetch("https://script.google.com/macros/s/AKfycbwnIT-8LMqgLR5Wc-fJof98ohPDeKXXCeZe_JfMPG16AVqVb9zaDLNbMYfD_143FYpF/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("status").innerText = "Your checklist will arrive shortly!";
+    })
+    .catch(err => {
+      document.getElementById("status").innerText = "Error generating checklist.";
+    });
+
+  });
+
+};
 
 </script>
 
