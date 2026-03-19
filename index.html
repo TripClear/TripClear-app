@@ -295,6 +295,8 @@ const selected = Array.from(document.querySelector('select[name="airlines"]').se
 if (selected.length < 2) return false;
 
 const base = airlineRules[selected[0]];
+  
+if (!base) return false;  
 
 for (let i = 1; i < selected.length; i++) {
   const current = airlineRules[selected[i]];
