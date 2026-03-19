@@ -245,14 +245,22 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 <option>Yes</option>
 </select>
 
-<label>Email for checklist delivery</label>
-<input name="email" type="email" required>
-
 <button type="button" onclick="runCheck()">Check Itinerary</button>
 
-<button type="submit" id="submitBtn" disabled>
-  Generate My TripClear Checklist
+ <button type="button" id="requestBtn" style="display:none;">
+  Request TripClear Checklist
+</button> 
+
+<div id="checkoutSection" style="display:none;">
+
+<label>Email for checklist delivery</label> 
+<input name="email" type="email" required> 
+
+<button type="submit" id="submitBtn"> 
+  Generate My TripClear Checklist 
 </button>
+
+</div>
 
 </form>
 </div>
@@ -320,14 +328,12 @@ function runCheck() {
   const isComplex = checkComplexity();
 
   if (isComplex) {
-    alert("Complex itinerary detected.\n\nMultiple airlines have conflicting rules.\n\nYou will need a TripClear checklist.");
-    document.getElementById("submitBtn").disabled = false;
+    alert("Complex itinerary detected.\n\nYou will need a TripClear checklist.");
   } else {
-    const proceed = confirm("No complex itinerary detected.\n\nDo you still want to continue?");
-    if (proceed) {
-      document.getElementById("submitBtn").disabled = false;
-    }
+    alert("No complex itinerary detected.\n\nChecklist optional.");
   }
+
+  document.getElementById("requestBtn").style.display = "block";
 }
 
 </script>
