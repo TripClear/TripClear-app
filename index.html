@@ -336,6 +336,11 @@ function runCheck() {
   document.getElementById("requestBtn").style.display = "block";
 }
 
+  document.getElementById("requestBtn").addEventListener("click", function() {
+  document.getElementById("checkoutSection").style.display = "block";
+  this.style.display = "none";
+});
+
 </script>
 
 </body>
