@@ -344,25 +344,34 @@ function runCheck() {
   });
 
   document.getElementById("tripForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    document.getElementById("status").innerText = "Checklist being generated...";
+  document.getElementById("status").innerText = "Checklist being generated...";
 
-    const formData = new FormData(this);
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
 
-    fetch("https://script.google.com/macros/s/AKfycbwnIT-8LMqgLR5Wc-fJof98ohPDeKXXCeZe_JfMPG16AVqVb9zaDLNbMYfD_143FYpF/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.text())
-    .then(data => {
+  const airlineSelect = document.querySelector('select[name="airlines"]');
+  const selectedAirlines = Array.from(airlineSelect.selectedOptions).map(o => o.value);
+  data.airlines = selectedAirlines.join("\n");
+
+  fetch("https://script.google.com/macros/s/AKfycbwnIT-8LMqgLR5Wc-fJof98ohPDeKXXCeZe_JfMPG16AVqVb9zaDLNbMYfD_143FYpF/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(result => {
+    if (result.success) {
       document.getElementById("status").innerText = "Your checklist will arrive shortly!";
-    })
-    .catch(err => {
+    } else {
       document.getElementById("status").innerText = "Error generating checklist.";
-    });
-
+    }
+  })
+  .catch(err => {
+    document.getElementById("status").innerText = "Error generating checklist.";
   });
+
+});
 
 };
 
