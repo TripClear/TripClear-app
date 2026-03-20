@@ -424,8 +424,9 @@ function runCheck() {
   document.getElementById("status").innerText = "Checklist being generated...";
 
   const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
-
+let data = Object.fromEntries(formData.entries());
+    
+// Airlines
   const airlineSelect = document.querySelector('select[name="airlines"]');
   const selectedAirlines = Array.from(airlineSelect.selectedOptions).map(o => o.value);
   data.airlines = selectedAirlines.join("\n");
