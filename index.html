@@ -144,10 +144,6 @@ font-size:15px;
 color:#4b5563;
 line-height:1.5;
 }
-
-textarea[name="route"]{
-height:45px;
-} 
   
 </style>
 </head>
@@ -172,12 +168,30 @@ Enter your trip details and TripClear will generate a preparation checklist base
 <label>Departure country</label>
 <input name="departure" required>
 
-<label>Destination and layover countries</label>
-<textarea name="route" rows="2" required></textarea>
+<label>Country of origin</label>
+<select name="origin" required>
+  <option>United States</option>
+  <option>Canada</option>
+  <option>United Kingdom</option>
+</select>
+
+<label>Destination countries</label>
+<select name="destinations" multiple required>
+  <option>Thailand</option>
+  <option>Japan</option>
+  <option>Brazil</option>
+</select>
 
 <p style="font-size:12px;color:#6b7280;margin-top:3px;">
-List all countries you will visit or transit through. Include layovers. Ex: Turkey, Thailand, Japan
+Hold Ctrl (Windows) or Command (Mac) to select multiple countries
 </p>
+
+<label>Layover countries (if any)</label>
+<select name="layover_countries" multiple>
+  <option>Qatar</option>
+  <option>UAE</option>
+  <option>Turkey</option>
+</select>
   
 <label>Select airline(s)</label>
 
