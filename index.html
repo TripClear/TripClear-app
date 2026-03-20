@@ -430,6 +430,16 @@ function runCheck() {
   const selectedAirlines = Array.from(airlineSelect.selectedOptions).map(o => o.value);
   data.airlines = selectedAirlines.join("\n");
 
+  // Destinations
+const destinationSelect = document.querySelector('select[name="destinations"]');
+const selectedDestinations = Array.from(destinationSelect.selectedOptions).map(o => o.value);
+data.destinations = selectedDestinations.join(",");
+
+// Layovers
+const layoverSelect = document.querySelector('select[name="layover_countries"]');
+const selectedLayovers = Array.from(layoverSelect.selectedOptions).map(o => o.value);
+data.layover_countries = selectedLayovers.join(",");  
+
   fetch("https://script.google.com/macros/s/AKfycbzcmE0cjTKBTs9T5h8Qj7L6TpIrQNx3oPodQJK_pssucS3RvDLr07pb-_ualCiEx3oA/exec", {
     method: "POST",
     body: JSON.stringify(data)
