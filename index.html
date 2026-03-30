@@ -159,7 +159,11 @@ line-height:1.5;
 <h1>TripClear Checklist Generator</h1>
 
 <p class="form-intro">
-Enter your trip details and TripClear will generate a preparation checklist based on the strictest airline and travel rules.
+Enter your trip details and we’ll determine the requirements you need to follow across your itinerary
+</p>
+
+<p style="font-size:12px; color:#666;">
+We bring everything together into one clear set of preparation guidelines
 </p>
 
 <div class="form-panel">
@@ -287,6 +291,10 @@ Hold Ctrl (Windows) or Command (Mac) to select multiple countries
 Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 </p>
 
+<p style="font-size:12px;color:#6b7280;margin-top:3px;">
+Selecting multiple airlines helps identify conflicting requirements across your trip
+</p> 
+
 <label>Cabin class</label>
 <select name="cabin">
 <option>Economy</option>
@@ -320,19 +328,27 @@ Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 <option>Yes</option>
 </select>
 
-<button type="button" onclick="runCheck()">Check Itinerary</button>
-
- <button type="button" id="requestBtn" style="display:none;">
-  Request TripClear Checklist
-</button> 
+<button type="button" onclick="runCheck()">Check My Itinerary</button>
 
 <div id="checkoutSection" style="display:none;">
 
 <label>Email for checklist delivery</label> 
-<input name="email" type="email" required> 
+<input name="email" type="email" required>
+
+<div style="margin-top:15px; opacity:0.6;">
+  <label>Payment (coming soon)</label>
+
+  <input type="text" placeholder="Card number" disabled style="margin-top:5px;">
+  <input type="text" placeholder="MM/YY" disabled style="width:48%; display:inline-block;">
+  <input type="text" placeholder="CVC" disabled style="width:48%; display:inline-block; float:right;">
+
+  <p style="font-size:12px; color:#666; margin-top:6px;">
+    Payment not required during testing phase
+  </p>
+</div>
 
 <button type="submit" id="submitBtn"> 
-  Generate My TripClear Checklist 
+  Request & Generate Checklist 
 </button>
 
 </div>
@@ -403,20 +419,15 @@ function runCheck() {
   const isComplex = checkComplexity();
 
   if (isComplex) {
-    alert("Complex itinerary detected.\n\nYou will need a TripClear checklist.");
-  } else {
-    alert("No complex itinerary detected.\n\nChecklist optional.");
-  }
+  alert("Complex trip detected.\n\nYour itinerary includes multiple airlines or destinations with potentially conflicting requirements.\n\nTripClear will provide a checklist to help you prepare across your entire trip.");
+} else {
+  alert("Simple trip detected.\n\nTripClear can still provide a checklist to help you prepare.");
+}
 
-  document.getElementById("requestBtn").style.display = "block";
+ document.getElementById("checkoutSection").style.display = "block";
 }
 
  window.onload = function() {
-
-  document.getElementById("requestBtn").addEventListener("click", function() {
-    document.getElementById("checkoutSection").style.display = "block";
-    this.style.display = "none";
-  });
 
   document.getElementById("tripForm").addEventListener("submit", function(e) {
   e.preventDefault();
