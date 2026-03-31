@@ -464,7 +464,7 @@ const layoverSelect = document.querySelector('select[name="layover_countries"]')
 const selectedLayovers = Array.from(layoverSelect.selectedOptions).map(o => o.value);
 data.layover_countries = selectedLayovers.join(","); 
 
-  fetch("https://script.google.com/macros/s/AKfycbxq2zSSeoL8ZONIlFm7Gi9l8NvxhhxD8mpUVehs5xi-lcVmKO7WqxvEf7PAxU3S6woR/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbynhSyZv--Vc9g0id9W16c8I1fWF6Xo95YZzMIqbbNXkaJZF4LTLqMboRrwSE7SR1Yg/exec", {
     method: "POST",
     body: JSON.stringify(data)
   })
