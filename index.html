@@ -291,7 +291,7 @@ Hold Ctrl (Windows) or Command (Mac) to select multiple countries
 Hold <b>Ctrl</b> (Windows) or <b>Command</b> (Mac) to select multiple airlines.
 </p>
 
-<p style="font-size:13px; font-style:italic; color:#374151; margin-top:6px;">
+<p style="font-size:12px; font-style:italic; font-weight:600; color:#374151; margin-top:6px;">
 Selecting multiple airlines helps identify conflicting requirements across your trip
 </p>
 
@@ -464,7 +464,7 @@ const layoverSelect = document.querySelector('select[name="layover_countries"]')
 const selectedLayovers = Array.from(layoverSelect.selectedOptions).map(o => o.value);
 data.layover_countries = selectedLayovers.join(","); 
 
-  fetch("https://script.google.com/macros/s/AKfycbymAtC3I3YpSGi52ucTDdtviKX46KpomZhL2Zc6y0JKA-wfnNyX4NBk_TbCKHcwwJYP/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyyS535gEnGmxMw4ImVQgpZ7ixHOzl1PV0UqNVmjWJ-iUmoLhcfGu8VByr2U2RmBT6t/exec", {
     method: "POST",
     body: JSON.stringify(data)
   })
